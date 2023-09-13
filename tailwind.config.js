@@ -5,7 +5,14 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'dim-white': '#EFF2FB',
+        'dim-card' : '#FEFEFF',
+        'dim-selected-mini-card': '#42B1FA',
+        'dim-unselected-mini-card': '#FAFAFA',
+      },
+    },
   },
   plugins: [],
 }
