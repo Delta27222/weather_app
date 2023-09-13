@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getFullWeather, getSimpleWeather } from '../../component';
+import { getFullWeather, getSimpleWeather } from '../../api';
 
 
 const initialState ={
