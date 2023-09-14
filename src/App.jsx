@@ -1,22 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from 'react'
 import './App.css'
-import { useDispatch } from 'react-redux'
-import { setAddress } from './store/slices/dataSlice'
+import { CardWeatherComponent } from './component'
 
 function App() {
-  const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(setAddress())
-  }, [])
-
   return (
-    <>
-      <h1 className="text-7xl font-bold underline mt-10 text-red-500">
-      Hello world!
-      </h1>
-    </>
+    <main className='flex flex-col justify-center items-center h-screen w-screen bg-dim-white'>
+        {/* <h1 className='text-4xl font-bold'>Weather App</h1> */}
+        <CardWeatherComponent />
+    </main>
   )
 }
 
 export default App
+
+
+// https://dribbble.com/Offdesignarea desined by Offdesignarea
+
