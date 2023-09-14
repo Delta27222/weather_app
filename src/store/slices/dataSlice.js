@@ -2,8 +2,9 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getFullWeather, getSimpleWeather } from '../../api';
 
 
-const initialState ={
+const initialState = {
   city: '',
+  country: '',
   simpleWeatherInfo: {},
   fullWeatherInfo: {},
 }
@@ -14,6 +15,7 @@ export const fecthSimpleWeather = createAsyncThunk(
     const simpleWeather = await getSimpleWeather(city)
     dispatch(setSimpleWeather(simpleWeather))
     dispatch(setCity(city))
+    dispatch(setCountry())
   }
 )
 export const fecthFullWeather = createAsyncThunk(
@@ -31,6 +33,9 @@ export const dataSlice = createSlice({
     setCity: (state, action) => {
       state.city = action.payload
     },
+    setCountry:(state) => {
+      state.country = state.simpleWeatherInfo.sys.country
+    },
     setSimpleWeather: (state, action) => {
       state.simpleWeatherInfo = action.payload
     },
@@ -41,6 +46,6 @@ export const dataSlice = createSlice({
   },
 });
 
-export const { setCity, setSimpleWeather, setFullWeather } = dataSlice.actions;
+export const { setCity, setCountry, setSimpleWeather, setFullWeather } = dataSlice.actions;
 
 export default dataSlice.reducer;
