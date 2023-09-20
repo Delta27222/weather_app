@@ -1,10 +1,11 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import { useSelector } from "react-redux"
 import { drop, rain, wind } from "../../assets"
 import { useEffect } from "react"
 
-const InfoWindRainHumComponent = () => {
+const InfoWindRainHumComponent = ({loading}) => {
   const info = useSelector(state => state.data.fullWeatherInfo)
   var firstObj = {}
   var allInfo = []
@@ -41,8 +42,8 @@ const InfoWindRainHumComponent = () => {
         <div key={index} className="w-[80px] h-[50px] py-4 flex flex-col justify-center items-center rounded-2xl space-y-1 shadow-md">
           <img src={item.icon} alt="icon" className="w-3"/>
           <div className="flex flex-col justify-center items-center">
-            <p className="text-[8px] font-bold">{`${item.value} ${item.unit}`}</p>
-            <p className="text-[10px] text-gray-400 font-thin ">{item.title}</p>
+            <p className="text-[8px] font-bold">{!loading ? `${item.value} ${item.unit}` : '...' }</p>
+            <p className="text-[10px] text-gray-400 font-thin ">{!loading ? `${item.title}` : '...'}</p>
           </div>
         </div>
       )))}
