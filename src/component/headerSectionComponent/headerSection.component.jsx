@@ -19,6 +19,7 @@ const HeaderSectionComponent = () => {
       dispatch(fecthFullWeather(inputValue))
       setOpen(prev => !prev)
       setInputValue('');
+      event.target.blur();
     }
   };
   return (
