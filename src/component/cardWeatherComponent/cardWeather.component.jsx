@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useDispatch, useSelector } from "react-redux"
-import { HeaderSectionComponent, MidInfoComponent } from ".."
+import { HeaderSectionComponent, InfoWindRainHumComponent, MidInfoComponent } from ".."
 import { useEffect } from "react"
 import { fecthFullWeather, fecthSimpleWeather, setLoading } from "../../store"
 
@@ -11,8 +11,8 @@ const CardWeatherComponent = () => {
   useEffect(() => {
     setTimeout(() => {})
     dispatch(setLoading(true))
-    dispatch(fecthSimpleWeather('finlandia'))
-    dispatch(fecthFullWeather('finlandia'))
+    dispatch(fecthSimpleWeather('Caracas'))
+    dispatch(fecthFullWeather('Caracas'))
 
     setTimeout(() => {
       dispatch(setLoading(false))
@@ -23,6 +23,7 @@ const CardWeatherComponent = () => {
     <article className="flex flex-col items-center p-[27px] border h-[624px] w-[300px] bg-dim-card rounded-[40px] shadow-md text-black">
       <HeaderSectionComponent/>
       <MidInfoComponent loading={loading}/>
+      <InfoWindRainHumComponent info/>
     </article>
   )
 }
