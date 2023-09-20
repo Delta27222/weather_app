@@ -43,7 +43,7 @@ const InfoWindRainHumComponent = ({loading}) => {
           <img src={item.icon} alt="icon" className="w-3"/>
           <div className="flex flex-col justify-center items-center">
             <p className="text-[8px] font-bold">{!loading ? `${item.value} ${item.unit}` : '...' }</p>
-            <p className="text-[10px] text-gray-400 font-thin ">{!loading ? `${item.title}` : '...'}</p>
+            <p className="text-[10px] text-gray-400 font-normal ">{!loading ? `${item.title}` : '...'}</p>
           </div>
         </div>
       )))}
