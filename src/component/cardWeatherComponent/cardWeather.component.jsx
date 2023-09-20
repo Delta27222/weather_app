@@ -2,18 +2,34 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useDispatch, useSelector } from "react-redux"
 import { HeaderSectionComponent, InfoDaysComponent, InfoWindRainHumComponent, MidInfoComponent } from ".."
-import { useEffect } from "react"
-import { fecthFullWeather, fecthSimpleWeather, setLoading } from "../../store"
-
+import { useEffect, useState } from "react"
+import { fecthFullWeather, fecthFullWeatherLatLon, fecthSimpleWeather, fecthSimpleWeatherLatLog, setLoading } from "../../store"
+import { getLocation } from "../../hooks/useLocation";
 
 const CardWeatherComponent = () => {
+  const [firstEntry, setFirstEntry] = useState(true)
   const dispatch = useDispatch()
-  useEffect(() => {
-    setTimeout(() => {})
-    dispatch(setLoading(true))
-    dispatch(fecthSimpleWeather('Caracas'))
-    dispatch(fecthFullWeather('Caracas'))
+  const city = useSelector(state => state.data.city)
 
+  useEffect(() => {
+    dispatch(setLoading(true))
+    if(firstEntry) {
+      const fecthLocation = async () => {
+        try {
+          const locationData = await getLocation();
+          setFirstEntry(false)
+          dispatch(fecthSimpleWeatherLatLog({lat:locationData.latitude,lon:locationData.longitude}))
+          dispatch(fecthFullWeatherLatLon({lat:locationData.latitude,lon:locationData.longitude}))
+        } catch (error) {
+          console.error('Error getting location:', error);
+        }
+      }
+      fecthLocation();
+    }else{
+      dispatch(fecthSimpleWeather(city))
+      dispatch(fecthFullWeather(city))
+    }
+    
     setTimeout(() => {
       dispatch(setLoading(false))
     }, 1000);
