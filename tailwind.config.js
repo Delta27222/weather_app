@@ -11,9 +11,9 @@ export default {
         'dim-card' : '#FEFEFF',
         'dim-selected-mini-card': '#42B1FA',
         'dim-unselected-mini-card': '#FAFAFA',
+        'dim-selected-mini-card-down': '#F4F7F9',
       },
     },
   },
   plugins: [],
 }
-
