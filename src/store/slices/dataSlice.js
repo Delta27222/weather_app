@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getFullWeather, getFullWeatherLatLon, getSimpleWeather, getSimpleWeatherLatLog } from '../../api';
+import toast from 'react-hot-toast';
 
 
 const initialState = {
@@ -22,7 +23,6 @@ export const fecthFullWeatherLatLon = createAsyncThunk(
   'data/fecthFullWeatherLatLon',
   async ({lat, lon}, { dispatch }) => {
     const fullWeather = await getFullWeatherLatLon(lat, lon)
-    console.log("🚀 ~ file: dataSlice.js:28 ~ fullWeather:", fullWeather)
     dispatch(setFullWeather(fullWeather))
   }
 )
@@ -31,16 +31,24 @@ export const fecthSimpleWeather = createAsyncThunk(
   'data/fecthSimpleWeather',
   async (city, { dispatch }) => {
     const simpleWeather = await getSimpleWeather(city)
-    dispatch(setSimpleWeather(simpleWeather))
-    dispatch(setCity(city))
-    dispatch(setCountry())
+    if(simpleWeather.cod === '404') {
+      toast('Location not found!', {
+        icon: '🌎😟',
+      });
+    }else{
+      dispatch(setSimpleWeather(simpleWeather))
+      dispatch(setCity(simpleWeather.name))
+      dispatch(setCountry())
+    }
   }
 )
 export const fecthFullWeather = createAsyncThunk(
   'data/fecthFullWeather',
   async (city, { dispatch }) => {
     const fullWeather = await getFullWeather(city)
-    dispatch(setFullWeather(fullWeather))
+    if(fullWeather.cod !== '404') {
+      dispatch(setFullWeather(fullWeather))
+    }
   }
 )
 
