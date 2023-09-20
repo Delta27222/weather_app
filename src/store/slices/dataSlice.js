@@ -40,7 +40,6 @@ export const dataSlice = createSlice({
       state.simpleWeatherInfo = action.payload
     },
     setFullWeather: (state, action) => {
-      console.log('')
       state.fullWeatherInfo = action.payload
     },
   },
