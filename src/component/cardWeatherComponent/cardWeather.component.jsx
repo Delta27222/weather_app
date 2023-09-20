@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useDispatch, useSelector } from "react-redux"
-import { HeaderSectionComponent, InfoWindRainHumComponent, MidInfoComponent } from ".."
+import { HeaderSectionComponent, InfoDaysComponent, InfoWindRainHumComponent, MidInfoComponent } from ".."
 import { useEffect } from "react"
 import { fecthFullWeather, fecthSimpleWeather, setLoading } from "../../store"
 
@@ -23,9 +23,12 @@ const CardWeatherComponent = () => {
     <article className="flex flex-col items-center p-[27px] border h-[624px] w-[300px] bg-dim-card rounded-[40px] shadow-md text-black">
       <HeaderSectionComponent/>
       <MidInfoComponent loading={loading}/>
-      <InfoWindRainHumComponent info/>
+      <InfoWindRainHumComponent loading={loading}/>
+      <InfoDaysComponent loading={loading}/>
     </article>
   )
 }
 
 export default CardWeatherComponent
+
+
