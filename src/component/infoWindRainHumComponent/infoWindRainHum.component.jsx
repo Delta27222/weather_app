@@ -3,7 +3,6 @@
 /* eslint-disable no-unused-vars */
 import { useSelector } from "react-redux"
 import { drop, rain, wind } from "../../assets"
-import { useEffect } from "react"
 
 const InfoWindRainHumComponent = ({loading}) => {
   const info = useSelector(state => state.data.fullWeatherInfo)
@@ -33,8 +32,6 @@ const InfoWindRainHumComponent = ({loading}) => {
       }
     ]
   }
-  console.log(allInfo)
-
 
   return (
     <section className="flex flex-row justify-center items-center gap-1 mt-4">

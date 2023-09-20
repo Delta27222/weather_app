@@ -1,8 +1,10 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import { useSelector } from "react-redux";
-import { imageWeather } from "../../hooks/searchIcon";
+import { imageWeather } from "../../hooks/useSearchIcon";
+import { NightMoon } from "../../assets";
 
-const InfoDaysComponent = () => {
+const InfoDaysComponent = ({loading}) => {
   const info = useSelector(state => state.data.fullWeatherInfo)
   var firstObj = []
   var firstObj0 = {}
@@ -41,9 +43,6 @@ const InfoDaysComponent = () => {
       },
     ]
   }
-
-  console.log("🚀 ~ file: infoDays.component.jsx:17 ~ InfoDaysComponent ~ firstObj:", firstObj)
-
   return (
     <section className="flex flex-col justify-center items-center mt-3 w-full space-y-3 select-none">
       <div className="w-full flex justify-start items-start">
@@ -52,9 +51,9 @@ const InfoDaysComponent = () => {
       <div className="flex flex-row justify-center items-center w-full gap-1">
       {firstObj.map((item, index) => ((
         <div key={index} className="h-[90px] w-[60px] rounded-2xl bg-dim-selected-mini-card-down flex flex-col justify-center items-center hover:bg-dim-selected-mini-card group">
-          <p className="text-[10px] font-bold group-hover:text-white">{item.main[0]}</p>
-          <img src={imageWeather(item.main[2])} alt="icon" className="w-8"/>
-          <p className="text-[14px] text-gray-400  font-normal group-hover:text-white">{item.main[1]}</p>
+          <p className="text-[10px] font-bold group-hover:text-white">{!loading ? `${item.main[0]}` : '...' }</p>
+          <img src={loading ? NightMoon : imageWeather(item.main[2])} alt="icon" className="w-8"/>
+          <p className="text-[14px] text-gray-400  font-normal group-hover:text-white">{!loading ? `${item.main[1]}` : '...' }</p>
         </div>
       )))}
       </div>

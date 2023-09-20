@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useSelector } from 'react-redux';
 import { NightMoon } from '../../assets';
-import { imageWeather } from "../../hooks/searchIcon";
+import { imageWeather } from "../../hooks/useSearchIcon";
 
 const MidInfoComponent = ({loading}) => {
   const info = useSelector(state => state.data.simpleWeatherInfo)
