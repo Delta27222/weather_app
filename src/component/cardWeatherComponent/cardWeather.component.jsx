@@ -9,7 +9,6 @@ import { getLocation } from "../../hooks/useLocation";
 const CardWeatherComponent = () => {
   const [firstEntry, setFirstEntry] = useState(true)
   const dispatch = useDispatch()
-  const city = useSelector(state => state.data.city)
 
   useEffect(() => {
     dispatch(setLoading(true))
@@ -25,11 +24,7 @@ const CardWeatherComponent = () => {
         }
       }
       fecthLocation();
-    }else{
-      dispatch(fecthSimpleWeather(city))
-      dispatch(fecthFullWeather(city))
     }
-    
     setTimeout(() => {
       dispatch(setLoading(false))
     }, 1000);

@@ -2,7 +2,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import { useSelector } from "react-redux"
-import { drop, rain, wind } from "../../assets"
+import { clouds, drop, rain, wind } from "../../assets"
 
 const InfoWindRainHumComponent = ({loading}) => {
   const info = useSelector(state => state.data.fullWeatherInfo)
@@ -11,26 +11,50 @@ const InfoWindRainHumComponent = ({loading}) => {
 
   if (info && info.list && info.list.length > 0) {
     firstObj = info.list[0];
-    allInfo = [
-      {
-        icon: wind,
-        value: firstObj.wind.speed,
-        unit: 'km/h',
-        title: 'Wind'
-      },
-      {
-        icon: drop,
-        value: firstObj.main.humidity,
-        unit: '%',
-        title: 'Humidity'
-      },
-      {
-        icon: rain,
-        value: firstObj.rain['3h'],
-        unit: '%',
-        title: 'Rain'
-      }
-    ]
+    if(firstObj.rain === undefined) {
+      allInfo = [
+        {
+          icon: wind,
+          value: firstObj.wind.speed,
+          unit: 'km/h',
+          title: 'Wind'
+        },
+        {
+          icon: drop,
+          value: firstObj.main.humidity,
+          unit: '%',
+          title: 'Humidity'
+        },
+        {
+          icon: clouds,
+          value: firstObj.clouds.all,
+          unit: '%',
+          title: 'Clouds'
+        }
+      ]
+    }else{
+      allInfo = [
+        {
+          icon: wind,
+          value: firstObj.wind.speed,
+          unit: 'km/h',
+          title: 'Wind'
+        },
+        {
+          icon: drop,
+          value: firstObj.main.humidity,
+          unit: '%',
+          title: 'Humidity'
+        },
+        {
+          icon: rain,
+          value: firstObj.rain['3h'],
+          unit: '%',
+          title: 'Rain'
+        }
+      ]
+    }
+
   }
 
   return (
