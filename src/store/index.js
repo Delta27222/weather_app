@@ -1,4 +1,4 @@
 export * from './store';
-import {fecthFullWeather, fecthSimpleWeather} from './slices/dataSlice';
+import {fecthFullWeather, fecthSimpleWeather, fecthSimpleWeatherLatLog, fecthFullWeatherLatLon} from './slices/dataSlice';
 import { setLoading } from './slices/uiSlice';
-export {fecthFullWeather, fecthSimpleWeather, setLoading}
+export {fecthFullWeather, fecthSimpleWeather, fecthSimpleWeatherLatLog, fecthFullWeatherLatLon, setLoading}

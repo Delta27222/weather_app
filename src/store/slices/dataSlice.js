@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getFullWeather, getSimpleWeather } from '../../api';
+import { getFullWeather, getFullWeatherLatLon, getSimpleWeather, getSimpleWeatherLatLog } from '../../api';
 
 
 const initialState = {
@@ -8,6 +8,24 @@ const initialState = {
   simpleWeatherInfo: {},
   fullWeatherInfo: {},
 }
+
+export const fecthSimpleWeatherLatLog = createAsyncThunk(
+  'data/fecthSimpleWeatherLatLog',
+  async ({lat, lon}, { dispatch }) => {
+    const simpleWeather = await getSimpleWeatherLatLog(lat, lon)
+    dispatch(setSimpleWeather(simpleWeather))
+    dispatch(setCity(simpleWeather.name))
+    dispatch(setCountry())
+  }
+)
+export const fecthFullWeatherLatLon = createAsyncThunk(
+  'data/fecthFullWeatherLatLon',
+  async ({lat, lon}, { dispatch }) => {
+    const fullWeather = await getFullWeatherLatLon(lat, lon)
+    console.log("🚀 ~ file: dataSlice.js:28 ~ fullWeather:", fullWeather)
+    dispatch(setFullWeather(fullWeather))
+  }
+)
 
 export const fecthSimpleWeather = createAsyncThunk(
   'data/fecthSimpleWeather',
