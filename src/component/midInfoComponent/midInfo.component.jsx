@@ -7,8 +7,8 @@ const MidInfoComponent = ({loading}) => {
 
   return (
     <section className="flex flex-col justify-center items-center">
-    <div className="h-[250px]">
-      <img src={` ${loading ? NightMoon : imageWeather(parseInt(info.weather[0].id))}`} alt="weatherIcon" className="scale-[.7]"/>
+    <div className="h-[230px]">
+      <img src={` ${loading ? NightMoon : imageWeather(parseInt(info.weather[0].id))}`} alt="weatherIcon" className="scale-[.8]"/>
     </div>
     <div className="flex flex-col justify-center items-center">
       <h1 className="text-7xl font-bold">{loading ? '...' : parseInt(info.main.temp)+'°'}</h1>
