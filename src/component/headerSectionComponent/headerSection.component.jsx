@@ -58,7 +58,7 @@ const ButtonSearch = ({ setOpen, setInputValue}) => {
   }
 
   return (
-    <button className="rounded-full border flex flex-col justify-center items-center p-2 border-gray-400 hover:bg-dim-unselected-mini-card" onClick={openSearch}>
+    <button className="rounded-full border flex flex-col justify-center items-center p-2 border-gray-400 hover:bg-dim-unselected-mini-card" onClick={openSearch} onTouchStart={openSearch}>
       <img src={searchIcon} alt="searchIcon" className="w-5"/>
     </button>
   )
